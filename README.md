@@ -3,7 +3,7 @@ Codebase for my senior honors project on super-stable matching and k-range prefe
 
 This is the code I used for the honors project I submitted to Amherst College on 4/18/22. 
 
-If you want to use these functions to run stable matching algorithms, I suggest you look to this repo instead. It contains the scripts that might be useful without files specific to my project.
+If you want to use these functions to run stable matching algorithms, I suggest you look to this repo instead: https://github.com/qhughes22. It contains the scripts that might be useful without files specific to my project.
 
 # Files
 1. SuperStableMatchingInstance.py: This class includes the stable matching algorithms implemented for this paper. It includes functions to find the super-stable matching poset for any SMTI instance and to find all super-stable matchings.
