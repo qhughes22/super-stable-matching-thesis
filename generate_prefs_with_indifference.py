@@ -333,45 +333,45 @@ def add_indifference_iteratively(male_prefs, gamma, seed, max_k, num_women):
     for k in ks:
         assert k <= max_k, ks
 
-def generate_prefs(generation_func, size, k, indiff, count, remove_func= None, remove_prob=0.9): #TODO different number of men vs women
-    """ Generates preference lists with indifference and incomplete lists by different possible methods. Has not been tested thoroughly
-
-         Parameters
-         ----------
-         generation_func : func
-             Function to be used to generate preferences. Either generate_tiered_prefs or generate_k_range
-         size : int
-             Size of instance to be generated.
-         k : int
-             K restriction.
-         indiff: float
-            Indifference parameter.
-         count: int
-            How many sets of preferences to generate.
-         remove_func: func
-             Function to use to determine how agents are removed from preference lists.
-         remove_prob: float
-            probability of removal to be passed to remove_func
-         Returns
-         -------
-         list
-            List of instances, each instance comprised of multiple preference lists
-         """
-    lists = []
-    for seed in range(count):
-        male_prefs = generation_func(size,k,seed)
-        # for a in range(size):
-        #     print (get_minrank(male_prefs,a), get_maxrank(male_prefs,a))
-        # add_indifference_push_your_luck(male_prefs, 0.8, seed, k, size)
-        add_indifference_iteratively(male_prefs, indiff, seed, k, size)
-        female_prefs = generation_func(size,k,seed+1)
-        add_indifference_iteratively(female_prefs, indiff, seed+1, k, size)
-        if remove_func is not None:
-            remove_func(male_prefs,female_prefs, remove_prob, seed)
-
-        lists.append([male_prefs, female_prefs])
-        print(seed)
-    return lists
+# def generate_prefs(generation_func, size, k, indiff, count, remove_func= None, remove_prob=0.9):
+#     """ Generates preference lists with indifference and incomplete lists by different possible methods. Has not been tested thoroughly
+#
+#          Parameters
+#          ----------
+#          generation_func : func
+#              Function to be used to generate preferences. Either generate_tiered_prefs or generate_k_range
+#          size : int
+#              Size of instance to be generated.
+#          k : int
+#              K restriction.
+#          indiff: float
+#             Indifference parameter.
+#          count: int
+#             How many sets of preferences to generate.
+#          remove_func: func
+#              Function to use to determine how agents are removed from preference lists.
+#          remove_prob: float
+#             probability of removal to be passed to remove_func
+#          Returns
+#          -------
+#          list
+#             List of instances, each instance comprised of multiple preference lists
+#          """
+#     lists = []
+#     for seed in range(count):
+#         male_prefs = generation_func(size,k,seed)
+#         # for a in range(size):
+#         #     print (get_minrank(male_prefs,a), get_maxrank(male_prefs,a))
+#         # add_indifference_push_your_luck(male_prefs, 0.8, seed, k, size)
+#         add_indifference_iteratively(male_prefs, indiff, seed, k, size)
+#         female_prefs = generation_func(size,k,seed+1)
+#         add_indifference_iteratively(female_prefs, indiff, seed+1, k, size)
+#         if remove_func is not None:
+#             remove_func(male_prefs,female_prefs, remove_prob, seed)
+#
+#         lists.append([male_prefs, female_prefs])
+#         print(seed)
+#     return lists
 
 def remove_at_random(male_prefs, female_prefs, prob, seed):
     """ Removes items at random from preference lists. Has not been tested thoroughly.
